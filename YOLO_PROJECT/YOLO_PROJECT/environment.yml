@@ -1,0 +1,9 @@
+name: yolo11
+channels:
+  - defaults
+dependencies:
+  - python=3.10
+  - pip
+  - cudatoolkit=11.8  # optional, remove if not needed or not available
+  - pip:
+    - -r requirements.txt

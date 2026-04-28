@@ -1,0 +1,8 @@
+path: g:/project/yolo11-chest_editted/YOLO_PROJECT/YOLO_PROJECT/datasets/lung_1_YOLO_3
+train: train/images
+val: val/images
+
+nc: 1
+names: ['lung_nodule']
+# For segmentation we generate PNG masks in train/masks and val/masks
+# Use the script YOLO_PROJECT/lung_1_YOLO_3/generate_masks_from_bboxes.py to create masks from bboxes if you don't have polygon masks.

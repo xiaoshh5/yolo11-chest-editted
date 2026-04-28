@@ -1,0 +1,16 @@
+# Train/val/test sets as 1) dir: path/to/imgs, 2) file: path/to/imgs.txt, or 3) list: [path/to/imgs1, path/to/imgs2, ..]
+path: G:/Upppppdate/AAAAA-standard-code/yolo11/dataset/fall_yolo_format
+train: # train images (relative to 'path')  16551 images
+  - images/train
+val: # val images (relative to 'path')  4952 images
+  - images/test
+test: # test images (optional)
+  - images/test
+
+# Classes
+# ['Chave', 'DISJUNTOR', 'TP', 'Pararraio', 'TC']
+#   ['fall', 'no-fall']
+names:
+  0: fall
+  1: no-fall
+

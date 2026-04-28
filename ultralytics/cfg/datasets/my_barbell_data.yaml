@@ -1,0 +1,15 @@
+#此文件为数据集的配置文件，在训练模型时使用
+
+
+
+#数据集路径
+path: E:/danziiiiiiiiiiiii/12-batch-train/others/Yolo_test/datasets/
+train: images/train
+val: images/valid
+test: images/test
+
+#类别的个数
+nc: 1
+
+#类别名称
+names: ['barbell']
