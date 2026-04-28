@@ -1,6 +1,0 @@
-path: ./data/sample_dataset
-train: train/images
-val: val/images
-
-nc: 2
-names: ['class0','class1']
