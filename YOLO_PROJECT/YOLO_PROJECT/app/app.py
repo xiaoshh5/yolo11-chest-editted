@@ -29,8 +29,6 @@ from ultralytics import YOLO
 try:
     from YOLO_PROJECT.pipeline.dicom import load_series, window_normalize
     from YOLO_PROJECT.pipeline.medsam import MedSAMSegmenter
-    # Local replacement for ctr_ratio if not found, but it should be there
-    from YOLO_PROJECT.pipeline.ctr import ctr_ratio
 except ImportError as e:
     print(f"Warning: Custom YOLO_PROJECT modules import error: {e}")
     # Fallback or exit? For now let it fail to alert user if paths are wrong
@@ -210,7 +208,8 @@ class MainWindow(QMainWindow):
         super().__init__()
         self.setWindowTitle("GGO Assist Pro - 智能肺结节分析")
         self.resize(1200, 800)
-        
+        self.setAcceptDrops(True)
+
         # 数据状态
         self.series = None
         self.spacing = None
@@ -391,27 +390,39 @@ class MainWindow(QMainWindow):
         
         self.setWindowTitle(f"GGO Assist Pro - Slice: {self.current_idx + 1}/{self.series.shape[0]} | {self.pick_device()}")
 
-    def on_open_folder(self):
-        d = QFileDialog.getExistingDirectory(self, "选择DICOM文件夹")
-        if not d: return
-        
+    def dragEnterEvent(self, e):
+        if e.mimeData().hasUrls():
+            e.acceptProposedAction()
+
+    def dropEvent(self, e):
+        urls = e.mimeData().urls()
+        if not urls:
+            return
+        d = urls[0].toLocalFile()
+        self._load_dicom_folder(d)
+
+    def _load_dicom_folder(self, d):
         self.lbl_status.setText("正在加载DICOM...")
         QApplication.processEvents()
-        
         try:
             arr, spacing, meta = load_series(d)
             if arr is None: raise ValueError("无法读取DICOM")
-            
             self.series = arr
             self.spacing = spacing
             self.meta = meta
-            self.current_idx = arr.shape[0] // 2 # 默认跳到中间
+            self.current_idx = arr.shape[0] // 2
             self.update_image_views()
             self.lbl_status.setText(f"加载成功: {arr.shape[0]} 层")
-            
+            return True
         except Exception as e:
             QMessageBox.critical(self, "错误", f"加载失败: {str(e)}")
             self.lbl_status.setText("加载失败")
+            return False
+
+    def on_open_folder(self):
+        d = QFileDialog.getExistingDirectory(self, "选择DICOM文件夹")
+        if not d: return
+        self._load_dicom_folder(d)
 
     def on_wheel(self, delta):
         if self.series is None: return

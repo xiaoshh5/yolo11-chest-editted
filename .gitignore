@@ -26,7 +26,6 @@ share/python-wheels/
 .installed.cfg
 *.egg
 MANIFEST
-requirements.txt
 setup.py
 ultralytics.egg-info
 
@@ -198,3 +197,4 @@ pipeline_verify_log.txt
 tmp/
 EXPORT_GG0_PROJECT/
 -p/
+.claude/

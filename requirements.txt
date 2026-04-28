@@ -1,0 +1,21 @@
+# Core AI
+torch>=2.0.0
+ultralytics>=8.0.0
+segment-anything
+
+# GUI
+pyqt6>=6.4.0
+
+# Image/Medical
+opencv-python>=4.5.0
+numpy>=1.20.0
+nibabel>=5.0.0
+simpleitk>=2.0.0
+pydicom>=2.0.0
+pyradiomics
+
+# Data processing
+scikit-learn
+scikit-image
+tqdm
+pillow

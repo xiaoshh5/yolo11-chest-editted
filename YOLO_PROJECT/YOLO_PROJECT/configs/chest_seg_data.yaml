@@ -1,4 +1,4 @@
-path: g:/project/yolo11-chest_editted/YOLO_PROJECT/YOLO_PROJECT/datasets/lung_1_YOLO_3
+path: ../datasets/lung_1_YOLO_3
 train: train/images
 val: val/images
 

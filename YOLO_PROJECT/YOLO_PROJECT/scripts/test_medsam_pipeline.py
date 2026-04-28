@@ -50,7 +50,7 @@ def main():
     print(f"[test] Running MedSAM prediction...")
     m = seg.predict(bgr, box)
     print(f"[test] MedSAM finished. Mask sum: {np.sum(m)}")
-    c = ctr_ratio(hu, m, solid_threshold=-300.0, spacing=(spacing[0], spacing[1]))
+    c = ctr_ratio(hu, m, solid_threshold=-300.0)
     Path(args.save_dir).mkdir(parents=True, exist_ok=True)
     overlay = bgr.copy()
     overlay[m > 0] = (0.2 * overlay[m > 0] + 0.8 * np.array([0, 0, 255])).astype(np.uint8)
