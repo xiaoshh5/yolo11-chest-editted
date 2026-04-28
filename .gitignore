@@ -193,6 +193,17 @@ train_log*.txt
 extraction_log.txt
 pipeline_verify_log.txt
 
+# Removed vendored directories (still on disk, not tracked)
+autodl_connector/
+examples/
+docker/
+docs/
+ultralytics/
+ultralytics.egg-info/
+
+# Generated test data
+tests/data/
+
 # Temp and export directories
 tmp/
 EXPORT_GG0_PROJECT/
